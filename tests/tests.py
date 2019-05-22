@@ -21,7 +21,7 @@ class WappalyzerTestCase(TestCase):
         analyzer = Wappalyzer.latest()
 
         print(analyzer.categories)
-        self.assertEquals(analyzer.categories['1'], 'CMS')
+        self.assertEquals(analyzer.categories['1'], {'name': 'CMS', 'priority': 1})
         self.assertIn('Apache', analyzer.apps)
 
     def test_analyze_no_apps(self):
@@ -47,7 +47,7 @@ class WappalyzerTestCase(TestCase):
 
         implied_apps = analyzer._get_implied_apps('a')
 
-        self.assertEquals(implied_apps, set(['a', 'b', 'c']))
+        self.assertEquals(implied_apps, {'a', 'b', 'c'})
 
     def test_get_analyze_with_categories(self):
         webpage = WebPage('http://example.com', '<html>aaa</html>', {})
